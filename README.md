@@ -15,7 +15,7 @@ Create the key in the cloudgpu.app console. Put it in `~/.hermes/.env` to keep i
 Before the catalog entry is merged, install from GitHub instead:
 
 ```bash
-hermes plugins install mrhy7176/hermes-cloudgpu/model-providers/cloudgpu
+hermes plugins install cloudgpu-app/hermes-cloudgpu/model-providers/cloudgpu
 ```
 
 Then `hermes model` and pick **CloudGPU**.
