@@ -4,7 +4,19 @@ A [Hermes Agent](https://github.com/NousResearch/hermes-agent) model-provider pl
 
 Hermes runs its own agent loop against cloudgpu.app's OpenAI-compatible API at `https://cloudgpu.app/v1`, with DeepSeek, Kimi, GLM and MiniMax models on one key. Model prices are on [cloudgpu.app/api](https://cloudgpu.app/api); the balance is topped up by card or USDT.
 
-## Setup
+## Owner-approved connection (candidate)
+
+The connection helper is a candidate integration, not a new model provider or a published PyPI release. Install the reviewed CloudGPU Python SDK from the companion `cloudgpu-app/cloudgpu-mcp` repository's `python/` directory, then run:
+
+```bash
+python3 model-providers/cloudgpu/connect.py --spend-limit 5
+```
+
+Open the link, sign in with Google, review the cap and approve. If needed, top up on the owner page. The helper writes the returned key to the private shared CloudGPU credential store and, by explicit invocation of this Hermes helper, the private local `~/.hermes/.env`. It never prints the key or makes a payment. The $5 is a key spending cap, not an automatic charge. Pending approval survives restarts. Restart Hermes after successful connection; revocation and limits remain enforced by CloudGPU.
+
+Do not install an unrelated similarly named package while the candidate SDK is not published. Existing manual key setup below remains available. Hermes framework compatibility still needs actual installed-Hermes acceptance; a local wrapper test is not end-to-end certification.
+
+## Existing manual setup
 
 ```bash
 hermes plugins install cloudgpu-provider && export CLOUDGPU_API_KEY=cgw-sk-... && hermes chat --provider cloudgpu -m deepseek-v4.1-flash
