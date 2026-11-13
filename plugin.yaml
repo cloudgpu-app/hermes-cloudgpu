@@ -1,0 +1,11 @@
+name: cloudgpu-provider
+kind: model-provider
+version: 1.0.0
+description: cloudgpu.app models (DeepSeek, Kimi, GLM, MiniMax) via the OpenAI-compatible API
+author: cloudgpu.app
+requires_hermes: ">=0.21.5"
+requires_env:
+  - name: CLOUDGPU_API_KEY
+    description: cloudgpu.app API key (cgw-sk-...)
+    url: https://cloudgpu.app/api
+    secret: true

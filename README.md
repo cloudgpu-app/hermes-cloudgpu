@@ -14,12 +14,14 @@ python3 model-providers/cloudgpu/connect.py --spend-limit 5
 
 Open the link, sign in with Google, review the cap and approve. If needed, top up on the owner page. The helper writes the returned key to the private shared CloudGPU credential store and, by explicit invocation of this Hermes helper, the private local `~/.hermes/.env`. It never prints the key or makes a payment. The $5 is a key spending cap, not an automatic charge. Pending approval survives restarts. Restart Hermes after successful connection; revocation and limits remain enforced by CloudGPU.
 
-Do not install an unrelated similarly named package while the candidate SDK is not published. Existing manual key setup below remains available. Hermes framework compatibility still needs actual installed-Hermes acceptance; a local wrapper test is not end-to-end certification.
+Do not install an unrelated similarly named package while the candidate SDK is not published. Existing manual key setup below remains available. Use an immutable `--ref <commit>` when installing a reviewed release. Runtime installation/registration acceptance is documented below; a new owner Google payment still requires the owner browser flow.
 
 ## Existing manual setup
 
 ```bash
-hermes plugins install cloudgpu-provider && export CLOUDGPU_API_KEY=cgw-sk-... && hermes chat --provider cloudgpu -m deepseek-v4.1-flash
+hermes plugins install cloudgpu-app/hermes-cloudgpu --enable
+# Then connect through the reviewed Python SDK, or configure your private Hermes env.
+hermes chat --provider cloudgpu -m deepseek-v4.1-flash
 ```
 
 Create the key in the cloudgpu.app console. Put it in `~/.hermes/.env` to keep it; the installer also asks for it.
@@ -55,3 +57,7 @@ hermes plugins validate --install-deps model-providers/cloudgpu
 ## License
 
 MIT.
+
+## Repository layout
+
+The repository root contains the native Hermes `plugin.yaml` and provider entry, so `hermes plugins install cloudgpu-app/hermes-cloudgpu` discovers a real plugin. The nested `model-providers/cloudgpu` copy remains for catalog compatibility; both entries must stay identical. The connector honors `HERMES_HOME` in the reviewed Python SDK and never writes keys into this repository.
