@@ -61,3 +61,7 @@ MIT.
 ## Repository layout
 
 The repository root contains the native Hermes `plugin.yaml` and provider entry, so `hermes plugins install cloudgpu-app/hermes-cloudgpu` discovers a real plugin. The nested `model-providers/cloudgpu` copy remains for catalog compatibility; both entries must stay identical. The connector honors `HERMES_HOME` in the reviewed Python SDK and never writes keys into this repository.
+
+## Runtime acceptance (2026-11-13)
+
+Tested the actual upstream Hermes CLI/provider registry at revision `5c1abd257d0cc1b531ffee6e50bef0621aa49dc4` with Python3.12. Repository installation, native provider registration and live public model catalog (42 models at observation) passed. The connection helper resumed real production pending state in a new process, completed existing-owner approval, and wrote0600 credentials only in an isolated HERMES_HOME. The internal test key was revoked afterward; no GPU or model-generation charge occurred. This does not certify every Hermes version, a model conversation, a new Google login/payment, or a PyPI publication.
