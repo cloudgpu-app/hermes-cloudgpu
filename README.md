@@ -1,8 +1,8 @@
 # hermes-cloudgpu
 
-A [Hermes Agent](https://github.com/NousResearch/hermes-agent) model-provider plugin for [cloudgpu.app](https://cloudgpu.app/api?utm_source=github&utm_medium=referral&utm_campaign=202611_seg04_codingagent&utm_content=hermes_plugin).
+A [Hermes Agent](https://github.com/NousResearch/hermes-agent) model-provider plugin for [cloudgpu.app](https://cloudgpu.app/api).
 
-Hermes runs its own agent loop against cloudgpu.app's OpenAI-compatible API at `https://cloudgpu.app/v1`, with DeepSeek, Kimi, GLM and MiniMax models on one key. Model prices are on [cloudgpu.app/api](https://cloudgpu.app/api); the balance is topped up by card or USDT.
+Hermes runs its own agent loop against cloudgpu.app's OpenAI-compatible API at `https://cloudgpu.app/v1`, with a live catalog of supported models on one key. Model prices are on [cloudgpu.app/api](https://cloudgpu.app/api); the balance is topped up by card or USDT.
 
 ## Owner-approved connection (candidate)
 
@@ -44,7 +44,7 @@ Then `hermes model` and pick **CloudGPU**.
 | Model list | live from `GET https://cloudgpu.app/v1/models` (public); if that fails, the fallback list below |
 | Default model | `deepseek-v4.1-flash` (also the auxiliary model) |
 
-Fallback models: `deepseek-v4.1-flash`, `deepseek-v4-pro`, `kimi-k3`, `kimi-k2.7-code`, `glm-5.2`, `minimax-m3`.
+The bundled fallback model IDs are compatibility hints, not a guarantee of current availability or price. Query the live `/v1/models` catalog and current pricing before choosing a model.
 
 The plugin registers one provider profile and nothing else: no tools, hooks, middleware or extra dependencies. Prompts, tool schemas and the key go to cloudgpu.app.
 
